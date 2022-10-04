@@ -21,9 +21,8 @@ function onClickLogin()
     alert("wrong user name or password")
     return
    }
-   
-   window.location.href = "user_page.html";
-   return false
+   var elForm =  document.getElementById("form")
+   elForm.action = "user_page.html"
 }
 function renderTodos() {
 
