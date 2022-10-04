@@ -3,7 +3,8 @@
 
 
 function onInit() {
-    renderTodos()
+   _createUsers()
+   _saveUsers()
 }
 
 

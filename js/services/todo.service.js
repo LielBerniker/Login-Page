@@ -7,7 +7,7 @@ var gFilterBy = {
 }
 var gTodos
 
-_createTodos()
+
 
 function getTodosForDisplay() {
     var todos = gTodos
@@ -64,33 +64,6 @@ function getActiveCount() {
 }
 
 
-function _createTodos() {
-    var todos = loadFromStorage(STORAGE_KEY)
-
-    if (!todos || !todos.length) {
-        todos = [
-            {
-                id: 't101',
-                txt: 'Learn HTML',
-                isDone: true
-            },
-            {
-                id: 't102',
-                txt: 'Master JS',
-                isDone: false
-            },
-            {
-                id: 't103',
-                txt: 'Study CSS',
-                isDone: false
-            },
-        ]
-    }
-
-    gTodos = todos
-    _saveTodosToStorage()
-}
-
 
 function _createTodo(txt) {
     const todo = {
@@ -124,38 +97,40 @@ function _makeId(length = 5) {
 
 
 
+var gUsers = new Array()
 
-const gUsers = [
 
-    {
+function  _createUsers() {
+     gUsers.push(  {
         id: 'u101',
         username: 'puki',
         password: 'secret',
         lastLoginTime: 1601891998864,
         isAdmin: true
-    },
-
-    {
+    })
+    gUsers.push(  {
         id: 'u102',
         username: 'saar',
         password: 'fridman',
         lastLoginTime: 1601891998864,
         isAdmin: false
-    },
-
-    {
+    })
+    gUsers.push(  {
         id: 'u103',
         username: 'hasel',
         password: 'thebazel',
         lastLoginTime: 1601891998864,
         isAdmin: false
-    }
-]
+    })
 
+
+}
 
 //  saves the users to localStorage
 function _saveUsers() {
-
+for (let i = 0; i < gUsers.length; i++) {
+   saveToStorage(gUsers[i].id,gUsers[i])  
+}
 }
 
 
