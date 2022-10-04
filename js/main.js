@@ -9,6 +9,22 @@ function onInit() {
 }
 
 
+function onClickLogin()
+{
+    var elUserName =  document.getElementById("username")
+    var elPassword =  document.getElementById("password")
+    var currUserName = elUserName.value
+    var currPassword = elPassword.value
+   var isUser =  doLogin(currUserName,currPassword)
+   if(isUser != 1)
+   {
+    alert("wrong user name or password")
+    return
+   }
+   
+   window.location.href = "user_page.html";
+   return false
+}
 function renderTodos() {
 
     const todos = getTodosForDisplay()

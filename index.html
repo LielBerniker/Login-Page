@@ -18,14 +18,14 @@
                     <div class="input-field">
                         <!-- <i class="fas fa-user"></i> -->
                         <label for="Username"></label>
-                        <input type="text" placeholder="Username" />
+                        <input id="username" type="text" placeholder="Username" />
                     </div>
                     <div class="input-field">
                         <!-- <i class="fas fa-lock"></i> -->
                         <label for="Password"></label>
-                        <input type="Password" placeholder="Password" />
+                        <input id="password" type="Password" placeholder="Password" />
                     </div>
-                    <input type="submit" value="Login" class="btn solid" />
+                    <input onclick="onClickLogin()" type="submit" value="Login" class="btn solid" />
                     <p class="social-text">Or Sign in with social platforms</p>
                     <div class="social-media">
                         <a href="#" class="social-icon faec-icon">
@@ -39,9 +39,9 @@
             </div>
         </div>
     </div>
-
+    <button class="hiddenbtn" onclick=""></button>
     <script src="js/services/storage.service.js"></script>
-    <script src="js/services/todo.service.js"></script>
+    <script src="js/services/login.service.js"></script>
     <script src="js/main.js"></script>
 </body>
 
