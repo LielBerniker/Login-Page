@@ -5,6 +5,7 @@
 function onInit() {
    _createUsers()
    _saveUsers()
+   getUsersToShow()
 }
 
 

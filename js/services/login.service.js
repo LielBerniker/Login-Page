@@ -98,7 +98,7 @@ function _makeId(length = 5) {
 
 
 var gUsers = new Array()
-
+var Sorting = "Name"
 
 function  _createUsers() {
      gUsers.push(  {
@@ -113,7 +113,7 @@ function  _createUsers() {
         username: 'saar',
         password: 'fridman',
         lastLoginTime: 1601891998864,
-        isAdmin: false
+        isAdmin: true
     })
     gUsers.push(  {
         id: 'u103',
@@ -129,7 +129,8 @@ function  _createUsers() {
 //  saves the users to localStorage
 function _saveUsers() {
 for (let i = 0; i < gUsers.length; i++) {
-   saveToStorage(gUsers[i].id,gUsers[i])  
+    var currKey = gUsers[i].username + gUsers[i].password
+   saveToStorage(currKey,gUsers[i])  
 }
 }
 
@@ -137,6 +138,28 @@ for (let i = 0; i < gUsers.length; i++) {
 
 // returns users by the current sorting
 function getUsersToShow() {
+    if(Sorting === "Name")
+    {
+        gUsers.sort((a, b) => {
+            const nameA = a.username.toUpperCase(); // ignore upper and lowercase
+            const nameB = b.username.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+          
+            // names must be equal
+            return 0;
+          });
+    }
+    else{
+        gUsers.sort((a, b) => {a.lastLoginTime - b.lastLoginTime
+          });
+    }
+    console.log(gUsers)
+    return gUsers
 
 }
 
@@ -147,6 +170,13 @@ function getUsersToShow() {
 //Also save the loggedinUser to localStorage
 
 function doLogin(userName, password) {
-
+    var currKey = userName + password
+ var currentUser = loadFromStorage(currKey)
+ if(currentUser === null)
+ {
+    return null
+ }
+ currentUser.lastLoginTime = Date.now()
+ saveToStorage(currKey,currentUser)
 }
 
