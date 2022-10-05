@@ -1,0 +1,35 @@
+body{
+    text-align: center;
+    background-image: linear-gradient(red,blue);
+      background-position: center;
+      background-size: cover;
+      color: lightgray;
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      color: black;
+    }
+    a {
+        margin: 5px;
+        font-size: 3rem;
+        border-radius: 25px;
+        text-decoration: none;
+        color: rgb(15, 14, 14);
+        background-color: rgb(255, 255, 255);
+        
+       
+      }
+      a:hover{
+        background-color:lightseagreen ;
+      }
+      .logout{
+        margin-top: 50vh;
+      }
+      .table{
+        background-color: whitesmoke;
+      }
+      .table-filter{
+        margin-top: 15px;
+        height: 30px;
+      }

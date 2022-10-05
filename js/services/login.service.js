@@ -2,12 +2,12 @@
 
 
 var gUsers = new Array()
-var Sorting = "Name"
+var Sorting = ""
 
 function _createUsers() {
      gUsers.push(  {
         id: 'u101',
-        username: 'puki',
+        username: 'auki',
         password: 'secret',
         lastLoginTime: 1601891998864,
         isAdmin: true
@@ -41,28 +41,29 @@ for (let i = 0; i < gUsers.length; i++) {
 
 // returns users by the current sorting
 function getUsersToShow() {
-    if(Sorting === "Name")
-    {
-        gUsers.sort((a, b) => {
+    var currStorageInfo = getAllStorge()
+    if (Sorting === "Name") {
+        currStorageInfo.sort((a, b) => {
             const nameA = a.username.toUpperCase(); // ignore upper and lowercase
             const nameB = b.username.toUpperCase(); // ignore upper and lowercase
             if (nameA < nameB) {
-              return -1;
+                return -1;
             }
             if (nameA > nameB) {
-              return 1;
+                return 1;
             }
-          
+
             // names must be equal
             return 0;
-          });
+        });
     }
-    else{
-        gUsers.sort((a, b) => {a.lastLoginTime - b.lastLoginTime
-          });
+    else if(Sorting === "Last Login"){ 
+        currStorageInfo.sort((a, b) => {
+            a.lastLoginTime - b.lastLoginTime
+        });
     }
-    console.log(gUsers)
-    return gUsers
+    // console.log(currStorageInfo)
+    return currStorageInfo
 
 }
 
@@ -81,6 +82,54 @@ function doLogin(userName, password) {
  }
  currentUser.lastLoginTime = Date.now()
  saveToStorage(currKey,currentUser)
- return 1
+ return currentUser
 }
 
+function renderBoard(selector) {
+    var strHTML = ``
+    var currStorgeInfo = getUsersToShow()
+    for (let i = 0; i < currStorgeInfo.length; i++) {
+        strHTML += `<tr>`
+        for (let j = 0; j < 4; j++) {
+            var currCell;
+              switch (j) {
+                case 0:
+                    currCell = currStorgeInfo[i].username;
+                    break;
+                case 1:
+                    currCell = currStorgeInfo[i].password;
+                    break;
+                case 2:
+                    currCell = currStorgeInfo[i].lastLoginTime;
+                    break;
+                case 3:
+                    currCell = currStorgeInfo[i].isAdmin;
+                    break;
+                default:
+                    break;
+              }
+
+            strHTML += `<td class="cell" onclick="cellClicked(this,${i},${j})" 
+        oncontextmenu="cellMarked(this,${i},${j}), event.preventDefault();">${currCell}</td>`
+        }
+        strHTML += `</tr>`
+    }
+    var elBoard = document.querySelector(selector)
+    elBoard.innerHTML = strHTML
+}
+function onSetFilter(value) {
+    
+    switch (value) {
+        case 'Name':
+            Sorting = 'Name'
+            renderBoard(".board")
+            break;
+        case 'Last Login':
+            Sorting = 'Last Login'
+            renderBoard(".board")
+            break;
+    
+        default:
+            break;
+    }
+}
