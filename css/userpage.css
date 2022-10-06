@@ -1,24 +1,35 @@
-body{
-text-align: center;
+body {
+  text-align: center;
   background-image: url(../img/background.jpg);
   background-position: center;
   background-size: cover;
-  color: lightgray;
   background-attachment: fixed;
+  font-family: 'lato', sans-serif;
 }
+
+
 a {
-    margin: 5px;
-    font-size: 3rem;
-    border-radius: 25px;
-    text-decoration: none;
-    color: rgb(15, 14, 14);
-    background-color: rgb(255, 255, 255);
-    
-   
-  }
-  a:hover{
-    background-color:lightseagreen ;
-  }
-  .logout{
-    margin-top: 85vh;
-  }
+  width: 150px;
+  background-color: #444;
+  border: none;
+  outline: none;
+  border-radius: 49px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.5em;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
+  margin-bottom: 3em;
+  text-decoration: none;
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  padding: 10px;
+}
+
+a:hover {
+  background-color: #457b9d;
+  color: black;
+}
